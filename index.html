@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script src="js/jspdf.min.js" type="text/javascript"></script>
+
+
+
+    </head>
+    <body>
+        <div id="conteudo">
+            <h3>Olá, esta é uma tag H3</h3>
+
+            <p>Um parágrafo.</p>
+        </div>
+        
+        <button id="btGerarPDF">Gerar PDF</button>
+
+
+        <script type="text/javascript">
+
+            var doc = new jsPDF();
+            var specialElementHandlers = {
+                '#editor': function (element, renderer) {
+                    return true;
+                }
+            };
+
+            $('#btGerarPDF').click(function () {
+                doc.fromHTML($('#conteudo').html(), 15, 15, {
+                    'width': 170,
+                    'elementHandlers': specialElementHandlers
+                });
+                doc.save('exemplo-pdf.pdf');
+            });
+        </script>
+    </body>
+</html>
